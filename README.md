@@ -22,5 +22,5 @@ Used for `project-etl` library, containing configuration files and local modules
     this will create the environment as specified by the `yml` file. Note that this installs all the packages specified at `requirements.txt` as well as the packages present in `src` folder in ***editable*** mode via pip.  
 3. Excecute the `set-up.ipynb` in the `notebook` directory. If it successfully runs, the project is ready to use.
 
-4. Create a repository on the [organizational github account](https://github.com/prosperia-social) and push your project there.
+4. Create a repository on the [organizational github account](https://github.com/prosperia-social) and push your project there. We usually call the projects "criteria-<country name>", e.g. "criteria-brasil", "criteria-uruguay", "criteria-salvador".
 
