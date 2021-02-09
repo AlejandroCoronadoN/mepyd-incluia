@@ -1,0 +1,11 @@
+*__pycache__*
+.ipynb_checkpoints
+*.zip
+*.html
+*.mp4
+*egg-info*
+data/*
+
+# VS code and pycharm
+.vscode/
+.idea/
