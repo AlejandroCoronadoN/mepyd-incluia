@@ -27,4 +27,8 @@ Used for `project-etl` library, containing configuration files and local modules
    git remote set-url origin <remote_url>
    ```
    We recommend using SSH protocol on the `<remote_url>` to skip passphrases (see [GitHub Guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)).
+6. Commit your changes and push it to the new repository by:
+   ```bash
+   git push -u origin master
+   ```
 
