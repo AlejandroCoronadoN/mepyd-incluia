@@ -3,7 +3,7 @@ name: criteria-do
 channels:
 - defaults
 dependencies:
-- python=3.8.*
+- python=3.7.*
 - pip=19.0.*
 - pip:
   - -r requirements.txt
