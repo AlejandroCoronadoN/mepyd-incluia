@@ -102,8 +102,8 @@ correlations:
 
 # Bivariate / Pairwise relations
 interactions:
-  targets: ['h1015', 'h1017']
-  continuous: False
+  targets: ['dedico_tiempo_cuidados', 'tiempo_cuidados_dias', 'tiempo_cuidado_horas_diarias']
+  continuous: True
 
 # For categorical
 categorical_maximum_correlation_distinct: 100
