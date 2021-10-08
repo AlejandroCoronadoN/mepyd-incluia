@@ -61,12 +61,11 @@ from export.exp0_export import(
 
 from utils.u0_utils import dissolve_dataframe_areas
 
-
-from microdata.mic0_micrdataprepare import(
-    groupby_household,
-    recover_areas_information,
-    percentage_metrics,
-    index_metrics_creation)
+#from microdata.mic0_micrdataprepare import(
+#    groupby_household,
+#    recover_areas_information,
+#    percentage_metrics,
+#    index_metrics_creation)
 
 def test_dict(internal_dict, external_dict, p):
     cont =0
@@ -320,5 +319,5 @@ if TESTING:
     centers_areas_car_walk.to_csv(f'data/testData/export/mepyd_areas_20210930.csv', index = False)
     gdf_centers.to_csv(f'data/testData/export/mepyd_centers_20210930.csv', index = False)
 else:
-     centers_areas_car_walk.to_csv(f'data/pipeline/export/mepyd_areas_20210930.csv', index = False)
+    centers_areas_car_walk.to_csv(f'data/pipeline/export/mepyd_areas_20210930.csv', index = False)
     gdf_centers.to_csv(f'data/pipeline/export/mepyd_centers_20210930.csv', index = False)
