@@ -2,9 +2,13 @@
 name: criteria-do
 channels:
 - defaults
+- conda-forge
 dependencies:
 - python=3.7.*
 - pip=19.0.*
+- conda-forge::geopandas=0.8.*
+- conda-forge::descartes=1.1.*
+- plotly=4.11.*
 - pip:
   - -r requirements.txt
   - --editable=src/.

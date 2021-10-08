@@ -1,45 +1,50 @@
-import pickle
 import pandas as pd
+from dotenv import load_dotenv
+import os
+import glob
 
-# criteriaetl imports
-from criteriaetl.utils.dataload import load_survey_data, load_s3_data
-from criteriaetl.utils.common_func import copy_docstring
-
-from projectetl.utils.config import (
-    S3_PROFILE_NAME, S3_BUCKET_NAME, S3_KEY, LOCAL_LOAD_FUNC, S3_LOAD_FUNC)
+# point to covidsource
+from covidsource.utils.dataload import load_survey_data, load_s3_data
+from covidsource.utils.common_func import copy_docstring
+from projectetl.utils.config import SURVEY_DATA_PATH, \
+    S3_BUCKET_NAME, S3_KEY_DICT, LOCAL_LOAD_FUNC, S3_LOAD_FUNCTIONAL
 
 
 @copy_docstring(load_survey_data)
-def load_survey_data_do(path,
+def load_survey_data_sv(path=SURVEY_DATA_PATH,
                         load_func=LOCAL_LOAD_FUNC,
-                        columnnames_to_lower=True):
-    data = load_func(path)
-
-    if columnnames_to_lower:
-        if isinstance(data, dict):
-            for table in data.values():
-                table.columns = table.columns.str.lower()
-        else:
-            data.columns = data.columns.str.lower()
-    return data
-
-
-def save_survey_with_pickle(obj, path):
-    with open(path, 'wb') as output:
-        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
-
-
-def load_survey_from_pickle(path):
-    with open(path, 'rb') as input:
-        return pickle.load(input)
+                        columnnames_to_lower=True,
+                       ) -> pd.DataFrame:
+    return load_survey_data(path, load_func,
+                            columnnames_to_lower=columnnames_to_lower)
 
 
 @copy_docstring(load_s3_data)
-def load_s3_data_sv(profile_name=S3_PROFILE_NAME,
+def load_s3_data_do(key_str,
                     bucket_name=S3_BUCKET_NAME,
-                    key=S3_KEY,
-                    load_func=S3_LOAD_FUNC,
-                    columnnames_to_lower=True
+                    key_dict=S3_KEY_DICT,
+                    load_functional=S3_LOAD_FUNCTIONAL,
+                    columnnames_to_lower=True,
+                    **load_kwargs
                     ):
-    return load_s3_data(profile_name, bucket_name, key, load_func,
+    load_dotenv()
+    s3_profile_name = os.getenv('AWS_PROFILE_NAME')
+    s3_key = key_dict[key_str]
+    print(
+        f'''
+        reading with AWS profile name: {s3_profile_name}
+        reading with key: {s3_key}
+        ''')
+
+
+    return load_s3_data(s3_profile_name, bucket_name, s3_key,
+                        load_functional(s3_key, **load_kwargs),
                         columnnames_to_lower=columnnames_to_lower)
+
+
+def get_path_from_pattern(pattern, i=-1, verbose=True):
+    """Returns `i`th file matching with pattern"""
+    path = sorted(glob.glob(pattern))[i]
+    if verbose:
+        print(f'found path: {path}')
+    return path

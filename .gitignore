@@ -5,7 +5,15 @@
 *.mp4
 *egg-info*
 data/*
+.fuse*
 
 # VS code and pycharm
 .vscode/
 .idea/
+
+# project environent variables
+.env 
+
+documents/
+testing.py
+.csv
