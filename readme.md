@@ -36,13 +36,14 @@ este código es generar tres archivos finales.
 
 ## Ejecución
 Para  ejecutar el código es importante tener en cuenta que existen diversas maneras de correr el código en función de dos banderas que se encuentran dentro del archivo main.py **TESTING** y **NEW_FILE**
-`TESTING == True`
+
+* `TESTING == True`
    * **Datos de prueba:** Es un conjunto de información mas pequeño asociado a la bandera . Al activar esta bandera estaremos corriendo el código tomando en cuenta unicamente los barrios de Santo Domingo Este.
-`TESTING == False`
+* `TESTING == False`
     * **Datos completos** Contiene toda la información para todos los centros y todos los barrios. Al desactivar esta bandera estaremos corriendo el código tomando en cuenta todos los barrios en Republica Dominicana.
-`NEW_FILE == True`
+* `NEW_FILE == True`
     * **Utilizar archivo newcenters_raw** Al activar esta bandera le estaremos indicando a nuestro programa que los centro nuevos que deseemos agregar sean tomados en cuenta al momento de ejecutar nuestro código. Cada uno des estos centros nuevos pasaran por un proceso adicional en el que se calcula su área de influencia. 
-`NEW_FILE == False`
+* `NEW_FILE == False`
     * **NO utilizar archivo newcenters_raw** Al desactivar esta bandera estaremos corriendo el código tomando en cuenta unicamente los barrios con los que este codigo fue desarrollado.
 
 ## `Filesystem` Folder de datos para el procesamiento de información
