@@ -16,4 +16,4 @@ data/*
 
 documents/
 testing.py
-.csv
+*.csv

@@ -17,7 +17,7 @@ import warnings
 from projectetl.utils.config import data_dir
 import logging
 from loadData.loa1_loadInfo import load_data
-
+import pdb 
 #Ignore warnings in this file to avoid unncesary print Wanings 
 warnings.filterwarnings('ignore')
 
@@ -109,11 +109,11 @@ def get_centers_stats(gdf_centers, gdf_admindiv, centers_areas_car_walk, key_col
             gdf_noinfluencearea_points = gdf_noinfluencearea.merge(centers_capacity[['id', 'geometry']])
             gdf_noinfluencearea_points = gpd.GeoDataFrame(gdf_noinfluencearea_points)
             diff =100
-            alpha = .1
+            alpha = .001
             while np.abs(diff) >.001:
                 buffer_meanarea = gdf_noinfluencearea_points['geometry'].buffer(alpha).area.mean()
                 diff = existing_meanarea - buffer_meanarea
-                alpha = alpha + (diff *.01)
+                alpha = alpha + (diff *.05)
                 
             gdf_noinfluencearea_points['geometry'] = gdf_noinfluencearea_points['geometry'].buffer(alpha)
             df_center_geom = gdf_influencearea.append(gdf_noinfluencearea_points)

@@ -1,5 +1,6 @@
 
 import logging, sys
+import pdb 
 from criteriaetl.transformers.columns_base import (NameTransformer, 
       ReplaceTransformer, SelectTransformer, AssignTransformer)
 from criteriaetl.transformers.rows_base import (
@@ -156,14 +157,6 @@ def to_geodata(src_superate_gdf, latitude_col: str = 'lat', longitude_col:str = 
 
    superate_gdf = gpd.GeoDataFrame( src_superate_gdf, crs="EPSG:4326", geometry='geometry')
    return superate_gdf
-
-
-def merge_mem_hous_areas(superate_gdf, areas_gdf):
-    nr_cols  = non_repeated_columns(superate_gdf, areas_gdf)
-    merged_superate_gdf = gpd.sjoin(superate_gdf, areas_gdf[nr_cols + ['geometry']], op='within')
-    return merged_superate_gdf
-
-
 
 
 def mem_hous_area_rename_transformer(cast_out):

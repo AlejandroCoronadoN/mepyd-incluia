@@ -268,7 +268,7 @@ def process_centers(gdf_municipality_processed, gdf_neighborhood_processed):
 
     # ### Ministerio de la Mujer -  Neighborhoods
     nonrepeated_cols = non_repeated_columns(min_mujer_to_merge_gdf, gdf_neighborhood_processed, [], [], True)
-    min_mujer_neigh_gdf = gpd.sjoin(min_mujer_to_merge_gdf, gdf_neighborhood_processed[nonrepeated_cols])
+    min_mujer_neigh_gdf = gpd.sjoin(min_mujer_to_merge_gdf, gdf_neighborhood_processed[nonrepeated_cols], 'left')
 
 
     # ### Other geolocated centers
