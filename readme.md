@@ -34,17 +34,23 @@ este código es generar tres archivos finales.
 3.  `mepy_areas_20210930` : Este archivo contiene la información de las areas de influencia de los centros. Este archivo e. Este archivo deberá ser subido a la carpeta del proyecto en  [Google Drive](https://drive.google.com/drive/folders/1SoJajYOa1tqLRMcHjMPy5UofHeRZlPjF). El nombre del archivo deberá ser conservado y siempre hacer una substitución del archivo existente para permitir que Carto haga la actulización en Google Drive. 
 4.  `mepyd_centers_20210930` : Este archivo contiene la información de los centros procesados por el etl incluia'dominicana. El archivo nos permite identificar las capacidades y la posición geográfica de los centros. Este archivo deberá ser subido a la carpeta del proyecto en  [Google Drive](https://drive.google.com/drive/folders/1SoJajYOa1tqLRMcHjMPy5UofHeRZlPjF). El nombre del archivo deberá ser conservado y siempre hacer una substitución del archivo existente para permitir que Carto haga la actulización en Google Drive. 
 
+## Ejecución
+Para  ejecutar el código es importante tener en cuenta que existen diversas maneras de correr el código en función de dos banderas que se encuentran dentro del archivo main.py **TESTING** y **NEW_FILE**
+`TESTING == True`
+   * **Datos de prueba:** Es un conjunto de información mas pequeño asociado a la bandera . Al activar esta bandera estaremos corriendo el código tomando en cuenta unicamente los barrios de Santo Domingo Este.
+`TESTING == False`
+    * **Datos completos** Contiene toda la información para todos los centros y todos los barrios. Al desactivar esta bandera estaremos corriendo el código tomando en cuenta todos los barrios en Republica Dominicana.
+`NEW_FILE == True`
+    * **Utilizar archivo newcenters_raw** Al activar esta bandera le estaremos indicando a nuestro programa que los centro nuevos que deseemos agregar sean tomados en cuenta al momento de ejecutar nuestro código. Cada uno des estos centros nuevos pasaran por un proceso adicional en el que se calcula su área de influencia. 
+`NEW_FILE == False`
+    * **NO utilizar archivo newcenters_raw** Al desactivar esta bandera estaremos corriendo el código tomando en cuenta unicamente los barrios con los que este codigo fue desarrollado.
+
 ## `Filesystem` Folder de datos para el procesamiento de información
 Si completaste los pasos anteriores recordarás que hay una carpeta con la información para correr el código de incluia. Esta carpeta con el nombre de datos nos provee toda la infomación que será procesada, cruzada y condensada en los archivos de salida que se mencionaron en la sección anterior. Esta carpeta contiene dos subcarpetas que complen con diferentes funciones:
 * **raw:** Esta carpeta contiene toda la información que será procesada por el pipeline. Todo los archivos crudos (sin procesar) se encuentran en esta carpeta.
-* **process:** En esta carpeta se encuentran los archivos intermedios en el procesaminento de nuestro ETL. Cada Stage dentro del codigo main.py produce un archivo de salida que es almacenado dentro de esta carpeta.
-* **export:** En este folder se ecnuentran los archivos de salida mencionados en la sección 2 que deberán ser guardados en en la carpeta de visualización de Google Drive (para que los mapas puedan ser actualizdos y publicados)
-
-## `Ejecución:` Testing and Production
-Al momento de ejcutar el código hat dos modalidades de 
-* **raw:** Esta carpeta contiene toda la información que será procesada por el pipeline. Todo los archivos crudos (sin procesar) se encuentran en esta carpeta.
-* **process:** En esta carpeta se encuentran los archivos intermedios en el procesaminento de nuestro ETL. Cada Stage dentro del codigo main.py produce un archivo de salida que es almacenado dentro de esta carpeta.
-* **export:** En este folder se ecnuentran los archivos de salida mencionados en la sección 2 que deberán ser guardados en en la carpeta de visualización de Google Drive (para que los mapas puedan ser actualizdos y publicados)
-
-
-
+* **pipeline:** Esta carpeta contiene los datos exportados y procesados de la ejecucion del código con la base de datos completa.
+    * **process:** En esta carpeta se encuentran los archivos intermedios en el procesaminento de nuestro ETL. Cada Stage dentro del codigo main.py produce un archivo de salida que es almacenado dentro de esta carpeta.
+    * **export:** En este folder se ecnuentran los archivos de salida mencionados en la sección 2 que deberán ser guardados en en la carpeta de visualización de Google Drive (para que los mapas puedan ser actualizdos y publicados)
+* **testData:** Esta carpeta contiene los datos exportados y procesados de la ejecucion del código con el conjunto de prueba. El conjunto de prueba incluye infomración unicamente para Santo Domingo Este. Por lo que sólo podremos hacer validaciones sobre este municipio.
+    * **process:** En esta carpeta se encuentran los archivos intermedios en el procesaminento de nuestro ETL. Cada Stage dentro del codigo main.py produce un archivo de salida que es almacenado dentro de esta carpeta.
+    * **export:** En este folder se ecnuentran los archivos de salida mencionados en la sección 2 que deberán ser guardados en en la carpeta de visualización de Google Drive (para que los mapas puedan ser actualizdos y publicados)
